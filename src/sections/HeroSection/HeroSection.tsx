@@ -3,8 +3,8 @@ import { companyConfig } from '../../config/env';
 import { getHeroLead, heroPoints } from '../../content/companyCopy';
 import { serviceList } from '../../content/services';
 import type { ServiceId } from '../../types/content';
-import benchIllustration from '../../assets/illustrations/bench.svg';
 import { ButtonLink } from '../../components/ui/Button/Button';
+import { DeviceStage } from '../../components/ui/DeviceStage/DeviceStage';
 import { Container } from '../../components/ui/Container/Container';
 import { Icon } from '../../components/ui/Icon/Icon';
 import { getServiceIcon } from '../../components/ui/Icon/serviceIcon';
@@ -91,13 +91,7 @@ export function HeroSection(): ReactElement | null {
         </div>
 
         <div className={styles.visual}>
-          <img
-            className={styles.illustration}
-            src={benchIllustration}
-            alt=""
-            width="640"
-            height="420"
-          />
+          <DeviceStage focus={activeService.id} />
           <div className={styles.ticket}>
             <div className={styles.ticketTop}>
               <div>

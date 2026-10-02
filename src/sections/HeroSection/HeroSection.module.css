@@ -84,16 +84,13 @@
 
 .visual {
   position: relative;
-}
-
-.illustration {
-  width: min(100%, 34rem);
-  margin-inline: auto;
+  display: grid;
+  gap: 1rem;
 }
 
 .ticket {
   position: relative;
-  margin-top: -1.5rem;
+  margin-top: 0;
   padding: 1rem;
   border-radius: 24px;
   background: var(--color-white);
@@ -235,15 +232,8 @@
     flex: 0 0 auto;
   }
 
-  .illustration {
-    position: absolute;
-    top: -1.5rem;
-    right: -4%;
-    width: 108%;
-  }
-
   .ticket {
-    margin-top: 5.5rem;
+    margin-top: 0;
   }
 }
 

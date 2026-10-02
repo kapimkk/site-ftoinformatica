@@ -11,6 +11,7 @@ O site é uma aplicação React com TypeScript. O Node.js entra no desenvolvimen
 - **Configuração:** `src/config/env.ts` lê as variáveis `VITE_*`, valida o que dá para validar e entrega um objeto único para o restante da aplicação.
 - **Contato:** `src/services/contactLinks.ts` monta telefone, WhatsApp, e-mail e redes. Os componentes não carregam esses dados escritos no código.
 - **Conteúdo:** textos de serviço, diferenciais, etapas, dúvidas e depoimentos de demonstração ficam em `src/content`.
+- **Cena 3D:** a bancada do hero é CSS com perspectiva, sem biblioteca 3D. O aparelho em destaque segue a aba escolhida.
 - **Publicação:** arquivos estáticos em `dist/`, com exemplo de servidor em `nginx/ftoinformatica.conf.example`.
 
 Variáveis `VITE_*` são públicas. Elas aparecem no JavaScript do navegador. Use apenas dados que podem estar no site. Não coloque senha, token ou chave de API.
@@ -26,7 +27,7 @@ site-ftoinformatica/
 │   ├── components/
 │   │   ├── brand/                 marca
 │   │   ├── layout/                cabeçalho, rodapé, seção e metadados
-│   │   └── ui/                    botão, ícone, link, lista e avisos
+│   │   └── ui/                    botão, ícone, bancada 3D, link e avisos
 │   ├── config/                    ambiente e navegação
 │   ├── content/                   textos da landing
 │   ├── hooks/                     rolagem, seção ativa e movimento reduzido

@@ -6,6 +6,7 @@
 .grid {
   display: grid;
   gap: 1rem;
+  perspective: 1200px;
 }
 
 .card {
@@ -25,7 +26,7 @@
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px) rotateX(7deg);
   border-color: var(--color-yellow-500);
   box-shadow: var(--shadow-md);
 }

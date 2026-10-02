@@ -1,0 +1,365 @@
+.stage {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  position: relative;
+  height: clamp(320px, 46vw, 460px);
+  perspective: 1100px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 70% 18%, rgba(245, 196, 0, 0.22), transparent 28%),
+    linear-gradient(180deg, rgba(18, 48, 86, 0.55), rgba(7, 17, 30, 0.2));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.glow {
+  position: absolute;
+  width: 42%;
+  height: 42%;
+  right: 8%;
+  top: 8%;
+  background: radial-gradient(circle, rgba(245, 196, 0, 0.45), transparent 68%);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.tilt,
+.float,
+.world,
+.slot,
+.laptop,
+.phone,
+.printer {
+  transform-style: preserve-3d;
+}
+
+.tilt {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform: rotateX(calc(8deg + var(--tilt-y))) rotateY(calc(-18deg + var(--tilt-x)));
+  transition: transform 280ms ease-out;
+}
+
+.float {
+  animation: drift 7s ease-in-out infinite;
+}
+
+.world {
+  position: relative;
+  width: 320px;
+  height: 240px;
+  transform: translate(-28px, 42px) rotateX(48deg) rotateZ(-12deg) scale(0.84);
+}
+
+.floor {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  width: 520px;
+  height: 520px;
+  transform: translate(-50%, -50%) rotateX(90deg);
+  background-image:
+    linear-gradient(rgba(245, 196, 0, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 196, 0, 0.28) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(circle, #000 28%, transparent 68%);
+  animation: gridMove 10s linear infinite;
+}
+
+.ring {
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  width: 300px;
+  height: 300px;
+  border: 2px solid rgba(245, 196, 0, 0.28);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotateX(90deg);
+  opacity: 0.35;
+  transition: opacity 400ms ease;
+}
+
+.slot {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  transition: transform 600ms ease;
+}
+
+.laptopSlot {
+  transform: translate3d(calc(-50% - 52px), calc(-50% - 4px), 12px);
+}
+
+.phoneSlot {
+  transform: translate3d(calc(-50% + 84px), calc(-50% - 36px), 30px);
+}
+
+.printerSlot {
+  transform: translate3d(calc(-50% + 62px), calc(-50% + 72px), 4px);
+}
+
+.stage[data-focus='notebooks'] .laptopSlot {
+  transform: translate3d(calc(-50% - 44px), calc(-50% - 12px), 36px) scale(1.04);
+}
+
+.stage[data-focus='celulares'] .phoneSlot {
+  transform: translate3d(calc(-50% + 64px), calc(-50% - 40px), 52px) scale(1.08);
+}
+
+.stage[data-focus='impressoras'] .printerSlot {
+  transform: translate3d(calc(-50% + 54px), calc(-50% + 60px), 36px) scale(1.08);
+}
+
+.stage[data-focus='suporte'] .ring {
+  opacity: 1;
+  border-color: var(--color-yellow-400);
+}
+
+.stage[data-focus='notebooks'] .phone,
+.stage[data-focus='notebooks'] .printer,
+.stage[data-focus='celulares'] .laptop,
+.stage[data-focus='celulares'] .printer,
+.stage[data-focus='impressoras'] .laptop,
+.stage[data-focus='impressoras'] .phone {
+  filter: brightness(0.72) saturate(0.8);
+}
+
+.laptop {
+  width: 188px;
+  height: 128px;
+}
+
+.deck {
+  width: 188px;
+  height: 128px;
+  border-radius: 10px 10px 16px 16px;
+  background: linear-gradient(180deg, #1d4b7c 0%, #102848 100%);
+  box-shadow:
+    0 18px 30px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.keys {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: 16px;
+  height: 72px;
+  border-radius: 6px;
+  background:
+    linear-gradient(90deg, rgba(7, 17, 30, 0.55) 1px, transparent 1px),
+    linear-gradient(rgba(7, 17, 30, 0.55) 1px, transparent 1px), #163a62;
+  background-size:
+    14px 100%,
+    100% 12px,
+    auto;
+}
+
+.trackpad {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  width: 64px;
+  height: 28px;
+  transform: translateX(-50%);
+  border-radius: 6px;
+  background: #0c223d;
+  box-shadow: inset 0 0 0 1px rgba(255, 226, 138, 0.35);
+}
+
+.lid {
+  position: absolute;
+  left: 8px;
+  bottom: 100%;
+  width: 172px;
+  height: 112px;
+  transform-origin: center bottom;
+  transform: rotateX(-72deg);
+}
+
+.screen {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border: 7px solid #0b1c33;
+  border-bottom-width: 12px;
+  border-radius: 8px 8px 2px 2px;
+  background: linear-gradient(180deg, #123056, #07111e);
+  box-shadow: 0 0 24px rgba(245, 196, 0, 0.18);
+}
+
+.line,
+.phoneLine {
+  display: block;
+  height: 6px;
+  margin: 12px 14px 0;
+  border-radius: 99px;
+  background: rgba(244, 248, 252, 0.82);
+}
+
+.lineShort,
+.phoneLineShort {
+  width: 46%;
+}
+
+.lineMid {
+  width: 68%;
+  background: var(--color-yellow-400);
+}
+
+.scan,
+.paper span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 18%;
+  background: linear-gradient(180deg, transparent, rgba(245, 196, 0, 0.45), transparent);
+  animation: scan 2.8s ease-in-out infinite;
+}
+
+.phone {
+  width: 72px;
+  height: 132px;
+  padding: 6px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #f5c400, #d9ab00);
+  box-shadow:
+    0 16px 24px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 2px #0b1c33;
+  transform: rotateX(-68deg);
+}
+
+.phoneScreen {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #07111e;
+}
+
+.notch {
+  display: block;
+  width: 28px;
+  height: 6px;
+  margin: 8px auto 0;
+  border-radius: 99px;
+  background: #16365c;
+}
+
+.printer {
+  width: 132px;
+  height: 78px;
+  transform: rotateX(-8deg);
+}
+
+.printerBody {
+  position: relative;
+  height: 100%;
+  border-radius: 8px 8px 12px 12px;
+  background: linear-gradient(180deg, #24588f, #102848);
+  box-shadow:
+    0 16px 24px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.printerSlotMark {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  top: 12px;
+  height: 10px;
+  border-radius: 99px;
+  background: #07111e;
+}
+
+.paper {
+  position: absolute;
+  left: 22px;
+  top: -34px;
+  width: 88px;
+  height: 46px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #f7f9fc;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18);
+}
+
+.paper span {
+  position: static;
+  display: block;
+  height: 5px;
+  margin: 10px 8px 0;
+  background: #c5d3e4;
+  animation: none;
+}
+
+.paper span:last-child {
+  width: 60%;
+  background: var(--color-yellow-500);
+}
+
+.caption {
+  position: absolute;
+  left: 1rem;
+  bottom: 0.85rem;
+  z-index: 2;
+  color: var(--color-inverse-muted);
+  font-family: var(--font-condensed);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes gridMove {
+  to {
+    background-position:
+      0 34px,
+      34px 0;
+  }
+}
+
+@keyframes scan {
+  0% {
+    top: -20%;
+  }
+
+  100% {
+    top: 100%;
+  }
+}
+
+@media (min-width: 980px) {
+  .world {
+    transform: translate(-16px, 32px) rotateX(48deg) rotateZ(-12deg) scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt,
+  .slot,
+  .ring,
+  .laptop,
+  .phone,
+  .printer {
+    transition: none;
+  }
+
+  .float,
+  .floor,
+  .scan {
+    animation: none;
+  }
+}
