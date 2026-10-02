@@ -9,6 +9,7 @@ import {
 } from '../utils/validation';
 
 const FALLBACK_COMPANY_NAME = 'FTO Informática';
+const FALLBACK_BUSINESS_HOURS = 'Segunda a sexta, 9h às 18h';
 const PHONE_MIN_LENGTH = 10;
 const PHONE_MAX_LENGTH = 15;
 
@@ -146,7 +147,7 @@ export function createCompanyConfig(env: ImportMetaEnv): CompanyConfig {
       ['facebook.com'],
       'https://facebook.com/',
     ),
-    businessHours: readRaw(env.VITE_COMPANY_BUSINESS_HOURS),
+    businessHours: readRaw(env.VITE_COMPANY_BUSINESS_HOURS) || FALLBACK_BUSINESS_HOURS,
     googleMapsUrl: readMapsUrl(warnings, env.VITE_GOOGLE_MAPS_URL),
   };
 

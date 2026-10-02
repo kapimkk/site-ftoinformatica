@@ -1,9 +1,10 @@
 .mark {
-  width: auto;
-  height: 2.7rem;
+  width: 2.85rem;
+  height: 2.85rem;
   object-fit: contain;
   flex: none;
-  background: transparent;
+  border-radius: 8px;
+  background: #fff;
 }
 
 .lockup {
@@ -14,6 +15,7 @@
 }
 
 .name {
+  font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.1;

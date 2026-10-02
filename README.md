@@ -82,7 +82,7 @@ Preencha `.env` com os dados públicos da empresa. O arquivo `.env` não entra n
 | `VITE_COMPANY_CITY`           | Cidade.                                                               |
 | `VITE_COMPANY_INSTAGRAM`      | Usuário ou URL `https://instagram.com/...`.                           |
 | `VITE_COMPANY_FACEBOOK`       | Usuário ou URL `https://facebook.com/...`.                            |
-| `VITE_COMPANY_BUSINESS_HOURS` | Horário em texto livre.                                               |
+| `VITE_COMPANY_BUSINESS_HOURS` | Horário em texto livre. Vazio usa segunda a sexta, 9h às 18h.         |
 | `VITE_GOOGLE_MAPS_URL`        | Link HTTPS do Google Maps.                                            |
 
 Canais vazios ou inválidos não são exibidos. Em desenvolvimento, o console avisa o que foi ignorado. A build de produção não quebra por causa de um campo opcional vazio.
