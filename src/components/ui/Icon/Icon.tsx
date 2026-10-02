@@ -87,8 +87,8 @@ const paths: Record<IconName, ReactNode> = {
   close: <path d="M6 6l12 12M18 6 6 18" />,
   whatsapp: (
     <>
-      <path d="M6.8 17.8 5 20.5l.9-3A8 8 0 1 1 6.8 17.8Z" />
-      <path d="M9 10.2c.3 1.8 1.8 3.2 3.5 3.6" />
+      <path d="M12 5a6.5 6.5 0 0 0-5.6 9.8L5.6 18.4l3.7-.9A6.5 6.5 0 1 0 12 5Z" />
+      <path d="M9.4 10.1c.2 1.5 1.4 2.6 2.9 3" />
     </>
   ),
   search: (
@@ -127,6 +127,7 @@ export function Icon({ name, className, ...props }: IconProps): ReactElement {
       strokeWidth="1.75"
       strokeLinecap="round"
       strokeLinejoin="round"
+      overflow="visible"
       {...props}
     >
       {paths[name]}

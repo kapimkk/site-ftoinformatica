@@ -1,14 +1,21 @@
 .mark {
   width: auto;
-  height: 3.35rem;
-  max-width: 11rem;
+  height: 2.7rem;
   object-fit: contain;
   flex: none;
-  border-radius: 8px;
-  background: #fff;
+  background: transparent;
 }
 
 .lockup {
   display: inline-flex;
   align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.name {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  white-space: nowrap;
 }

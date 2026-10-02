@@ -92,7 +92,7 @@
 }
 
 .phoneSlot {
-  transform: translate3d(calc(-50% + 84px), calc(-50% - 36px), 30px);
+  transform: translate3d(calc(-50% - 6px), calc(-50% + 24px), 60px);
 }
 
 .printerSlot {
@@ -104,7 +104,7 @@
 }
 
 .stage[data-focus='celulares'] .phoneSlot {
-  transform: translate3d(calc(-50% + 64px), calc(-50% - 40px), 52px) scale(1.08);
+  transform: translate3d(calc(-50% - 8px), calc(-50% + 16px), 78px) scale(1.06);
 }
 
 .stage[data-focus='impressoras'] .printerSlot {
