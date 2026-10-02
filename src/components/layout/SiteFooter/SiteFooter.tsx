@@ -4,7 +4,7 @@ import { FOOTER_NAV_ITEMS } from '../../../config/navigation';
 import { getCompanySummary } from '../../../content/companyCopy';
 import { serviceList } from '../../../content/services';
 import { getPublicContactView } from '../../../services/contactLinks';
-import { Logo } from '../../brand/Logo/Logo';
+import { BrandLockup } from '../../brand/Logo/Logo';
 import { Container } from '../../ui/Container/Container';
 import { SafeLink } from '../../ui/SafeLink/SafeLink';
 import styles from './SiteFooter.module.css';
@@ -19,10 +19,9 @@ export function SiteFooter(): ReactElement {
         <div className={styles.grid}>
           <div className={styles.brand}>
             <a className={styles.brandLink} href="#inicio">
-              <Logo />
-              <span>{companyConfig.name}</span>
+              <BrandLockup />
             </a>
-            <p className={styles.summary}>{getCompanySummary(companyConfig.name)}</p>
+            <p className={styles.summary}>{getCompanySummary()}</p>
           </div>
 
           <nav className={styles.column} aria-label="Mapa do site">
@@ -77,7 +76,6 @@ export function SiteFooter(): ReactElement {
           <p>
             © {year} {companyConfig.name}
           </p>
-          <p>Depoimentos marcados como demonstração não são avaliações de clientes.</p>
         </div>
       </Container>
     </footer>

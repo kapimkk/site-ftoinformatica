@@ -11,8 +11,7 @@ export function FaqSection(): ReactElement {
       <SectionHeading
         id="duvidas-titulo"
         eyebrow="Dúvidas"
-        title="Antes de trazer o equipamento"
-        description="Respostas diretas sobre orçamento, arquivos, marcas e a forma de atendimento."
+        title="Respostas curtas"
       />
       <div className={styles.list}>
         {faqItems.map((item) => (

@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState, type ReactElement, type Ref } from 'react';
-import { companyConfig } from '../../../config/env';
 import { DESKTOP_NAV_QUERY, NAV_ITEMS } from '../../../config/navigation';
 import { useLockBodyScroll } from '../../../hooks/useLockBodyScroll';
 import { useScrolled } from '../../../hooks/useScrolled';
 import { cn } from '../../../utils/cn';
-import { Logo } from '../../brand/Logo/Logo';
+import { BrandLockup } from '../../brand/Logo/Logo';
 import { ButtonLink } from '../../ui/Button/Button';
 import { Icon } from '../../ui/Icon/Icon';
 import styles from './SiteHeader.module.css';
@@ -109,15 +108,14 @@ export function SiteHeader({ activeSectionId }: SiteHeaderProps): ReactElement {
       <header className={cn(styles.header, scrolled && styles.scrolled)}>
         <div className={styles.bar}>
           <a href="#inicio" className={styles.brand} onClick={closeMenu}>
-            <Logo />
-            <span>{companyConfig.name}</span>
+            <BrandLockup />
           </a>
           <nav className={styles.nav} aria-label="Seções">
             <NavLinks activeSectionId={activeSectionId} />
           </nav>
           <div className={styles.actions}>
-            <ButtonLink href="#orcamento" className={styles.quote} onClick={closeMenu}>
-              Orçamento
+            <ButtonLink href="#contato" className={styles.quote} onClick={closeMenu}>
+              Fale conosco
             </ButtonLink>
             <button
               ref={menuButtonRef}
@@ -149,8 +147,8 @@ export function SiteHeader({ activeSectionId }: SiteHeaderProps): ReactElement {
               firstItemRef={firstLinkRef}
             />
           </nav>
-          <ButtonLink href="#orcamento" className={styles.mobileQuote} onClick={closeMenu}>
-            Solicitar orçamento
+          <ButtonLink href="#contato" className={styles.mobileQuote} onClick={closeMenu}>
+            Fale conosco
           </ButtonLink>
         </div>
       ) : null}

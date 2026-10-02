@@ -4,6 +4,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-height) + 0.5rem);
+  scroll-padding-bottom: 5.5rem;
 }
 
 body {
@@ -13,6 +14,7 @@ body {
   color: var(--color-ink);
   background: var(--color-white);
   overflow-x: clip;
+  padding-bottom: 5.25rem;
 }
 
 #root {

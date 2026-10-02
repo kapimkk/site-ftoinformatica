@@ -1,12 +1,10 @@
 import type { ReactElement } from 'react';
-import { companyConfig } from '../../config/env';
 import { Section } from '../../components/layout/Section/Section';
 import { Icon } from '../../components/ui/Icon/Icon';
-import { SafeLink } from '../../components/ui/SafeLink/SafeLink';
-import { SectionHeading } from '../../components/ui/SectionHeading/SectionHeading';
 import { getPublicContactView } from '../../services/contactLinks';
 import type { ContactChannelId } from '../../types/company';
 import type { IconName } from '../../types/icon';
+import { isExternalHref } from '../../utils/validation';
 import styles from './ContactSection.module.css';
 
 const channelIcons: Record<ContactChannelId, IconName> = {
@@ -22,52 +20,49 @@ export function ContactSection(): ReactElement {
   const contact = getPublicContactView();
 
   return (
-    <Section id="contato" labelledBy="contato-titulo">
+    <Section id="contato" labelledBy="contato-titulo" tone="inverse">
       <div className={styles.layout}>
-        <div className={styles.intro}>
-          <SectionHeading
-            id="contato-titulo"
-            eyebrow="Contato"
-            title={`Fale com a ${companyConfig.name}`}
-            description="O atendimento começa pelo modelo do equipamento e pelo defeito que você já percebeu."
-          />
-          <p className={styles.lead}>
-            Use um canal publicado e descreva o equipamento. O diagnóstico começa por essa conversa.
-          </p>
-        </div>
-        <div className={styles.panel}>
-          {contact.hasDetails ? (
-            <dl className={styles.list}>
-              {contact.locationLines.length > 0 ? (
-                <div className={styles.row}>
-                  <dt>Endereço</dt>
-                  <dd className={styles.location}>{contact.locationLines.join('\n')}</dd>
-                </div>
-              ) : null}
-              {contact.hours ? (
-                <div className={styles.row}>
-                  <dt>Horário</dt>
-                  <dd>{contact.hours}</dd>
-                </div>
-              ) : null}
-              {contact.channels.map((channel) => (
-                <div key={channel.id} className={styles.row}>
-                  <dt>{channel.label}</dt>
-                  <dd>
-                    <SafeLink href={channel.href} className={styles.channel}>
-                      <Icon name={channelIcons[channel.id]} />
-                      {channel.value}
-                    </SafeLink>
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          ) : (
-            <p className={styles.empty}>
-              Os canais públicos ainda não foram publicados nesta versão do site.
-            </p>
-          )}
-        </div>
+        <header>
+          <p className={styles.eyebrow}>Contato</p>
+          <h2 id="contato-titulo">Fale conosco</h2>
+          <p className={styles.lead}>Modelo do aparelho e o que ele parou de fazer.</p>
+        </header>
+        {contact.hasDetails ? (
+          <div className={styles.grid}>
+            {contact.channels.map((channel) => {
+              const external = isExternalHref(channel.href);
+              return (
+                <a
+                  key={channel.id}
+                  className={styles.card}
+                  href={channel.href}
+                  {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
+                  <span className={styles.icon}>
+                    <Icon name={channelIcons[channel.id]} />
+                  </span>
+                  <span className={styles.label}>{channel.label}</span>
+                  <span className={styles.value}>{channel.value}</span>
+                  {external ? <span className="visually-hidden"> (abre em nova aba)</span> : null}
+                </a>
+              );
+            })}
+            {contact.locationLines.length > 0 ? (
+              <article className={styles.cardStatic}>
+                <span className={styles.label}>Endereço</span>
+                <span className={styles.value}>{contact.locationLines.join(' · ')}</span>
+              </article>
+            ) : null}
+            {contact.hours ? (
+              <article className={styles.cardStatic}>
+                <span className={styles.label}>Horário</span>
+                <span className={styles.value}>{contact.hours}</span>
+              </article>
+            ) : null}
+          </div>
+        ) : (
+          <p className={styles.empty}>Os canais de contato ainda não foram publicados.</p>
+        )}
       </div>
     </Section>
   );

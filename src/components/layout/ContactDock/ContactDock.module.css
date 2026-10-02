@@ -1,0 +1,55 @@
+.dock {
+  position: fixed;
+  z-index: 36;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem var(--gutter);
+  background: var(--color-yellow-500);
+  color: var(--color-navy-950);
+  box-shadow: 0 -10px 30px rgba(7, 17, 30, 0.18);
+}
+
+.text {
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.primary {
+  background: var(--color-navy-950);
+  color: var(--color-white);
+}
+
+.primary:hover {
+  background: var(--color-navy-800);
+}
+
+.secondary {
+  background: transparent;
+  border: 1px solid var(--color-navy-950);
+}
+
+.secondary:hover {
+  background: rgba(7, 17, 30, 0.08);
+}

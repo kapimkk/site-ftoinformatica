@@ -1,66 +1,96 @@
 .layout {
   display: grid;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
-.intro {
+.eyebrow {
+  color: var(--color-yellow-300);
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.layout h2 {
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.lead,
+.empty {
+  max-width: 28rem;
+  color: var(--color-inverse-muted);
+}
+
+.grid {
   display: grid;
-  gap: 1rem;
-  align-content: start;
+  gap: 0.75rem;
 }
 
-.lead {
-  max-width: 38rem;
-  color: var(--color-muted);
-  font-size: 1.08rem;
-}
-
-.panel {
+.card,
+.cardStatic {
   display: grid;
-  gap: 1.15rem;
-  padding: clamp(1.25rem, 3vw, 2rem);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-lg);
-  background: var(--color-paper);
+  gap: 0.2rem;
+  min-height: 6.5rem;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.list {
+.card {
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  background: var(--color-yellow-500);
+  border-color: var(--color-yellow-500);
+  color: var(--color-navy-950);
+}
+
+.icon {
   display: grid;
-  gap: 1rem;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-bottom: 0.35rem;
+  border-radius: 10px;
+  background: var(--color-yellow-500);
+  color: var(--color-navy-950);
 }
 
-.row dt {
-  color: var(--color-muted);
-  font-size: 0.86rem;
+.card:hover .icon {
+  background: var(--color-navy-950);
+  color: var(--color-yellow-400);
+}
+
+.label {
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-.row dd {
-  font-size: 1.08rem;
-  font-weight: 600;
+.value {
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
-.channel {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
+@media (min-width: 720px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
-.location {
-  display: grid;
-  white-space: pre-line;
-}
-
-.empty {
-  color: var(--color-muted);
-}
-
-@media (min-width: 860px) {
-  .layout {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    gap: 3rem;
-    align-items: start;
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card:hover {
+    transition: none;
+    transform: none;
   }
 }
