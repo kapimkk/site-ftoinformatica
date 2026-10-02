@@ -1,0 +1,95 @@
+.intro {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  height: 100%;
+  padding: 1.35rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--ease),
+    border-color var(--ease),
+    box-shadow var(--ease);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-yellow-500);
+  box-shadow: var(--shadow-md);
+}
+
+.iconWrap {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 12px;
+  background: var(--color-navy-900);
+  color: var(--color-yellow-400);
+  transition:
+    background-color var(--ease),
+    color var(--ease);
+}
+
+.card:hover .iconWrap {
+  background: var(--color-yellow-500);
+  color: var(--color-navy-950);
+}
+
+.card h3 {
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.card p {
+  color: var(--color-muted);
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: auto;
+  color: var(--color-navy-800);
+  font-weight: 700;
+}
+
+.card:hover .more {
+  gap: 0.6rem;
+}
+
+@media (min-width: 720px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card:hover,
+  .iconWrap,
+  .more,
+  .card:hover .more {
+    transition: none;
+    transform: none;
+    gap: 0.35rem;
+  }
+}

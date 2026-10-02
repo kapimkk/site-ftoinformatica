@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# Inclua o Sitemap quando o domínio de produção estiver definido.

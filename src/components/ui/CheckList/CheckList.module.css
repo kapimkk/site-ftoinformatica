@@ -1,0 +1,15 @@
+.list {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.item {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+}
+
+.icon {
+  margin-top: 0.15rem;
+  color: var(--color-navy-800);
+}

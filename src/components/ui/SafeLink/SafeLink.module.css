@@ -1,0 +1,19 @@
+.link {
+  color: var(--color-navy-800);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.link:hover {
+  color: var(--color-navy-950);
+}
+
+.inverse {
+  color: var(--color-inverse);
+}
+
+.inverse:hover {
+  color: var(--color-yellow-300);
+}

@@ -1,0 +1,17 @@
+.section {
+  padding-block: var(--section-space);
+  background: var(--color-white);
+  color: var(--color-ink);
+  scroll-margin-top: calc(var(--header-height) + 0.5rem);
+}
+
+.section[data-tone='muted'] {
+  background: var(--color-paper);
+}
+
+.section[data-tone='inverse'] {
+  background:
+    radial-gradient(circle at top left, rgba(245, 196, 0, 0.14), transparent 32%),
+    var(--color-navy-900);
+  color: var(--color-inverse);
+}

@@ -1,0 +1,154 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 40;
+  height: var(--header-height);
+  background: rgba(11, 28, 51, 0.92);
+  color: var(--color-white);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 3px 0 var(--color-yellow-500);
+  backdrop-filter: blur(16px);
+}
+
+.scrolled {
+  background: var(--color-navy-950);
+}
+
+.bar {
+  height: 100%;
+  width: min(var(--container), calc(100% - var(--gutter) * 2));
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.brand span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav {
+  display: none;
+  margin-left: auto;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0.35rem 0.55rem;
+  border-radius: 999px;
+  color: var(--color-inverse-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.link:hover,
+.current {
+  color: var(--color-white);
+}
+
+.current {
+  background: rgba(245, 196, 0, 0.14);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.menuButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-white);
+}
+
+.menuButton:hover {
+  border-color: var(--color-yellow-400);
+  color: var(--color-yellow-300);
+}
+
+.mobile {
+  position: fixed;
+  inset: var(--header-height) 0 0 0;
+  z-index: 39;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1rem var(--gutter) 2rem;
+  overflow: auto;
+  background: var(--color-navy-950);
+}
+
+.mobile .list {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+}
+
+.mobile .link {
+  min-height: 3.25rem;
+  padding-inline: 0.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0;
+  font-size: 1.2rem;
+  color: var(--color-white);
+}
+
+.mobileQuote {
+  width: 100%;
+}
+
+@media (max-width: 719px) {
+  .quote {
+    display: none;
+  }
+}
+
+@media (min-width: 1100px) {
+  .nav {
+    display: block;
+    margin-left: auto;
+  }
+
+  .actions {
+    margin-left: 0.75rem;
+  }
+
+  .menuButton,
+  .mobile {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .header,
+  .mobile {
+    background: var(--color-navy-950);
+    backdrop-filter: none;
+  }
+}

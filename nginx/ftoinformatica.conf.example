@@ -1,0 +1,47 @@
+# Exemplo de site Nginx para a build estática da FTO Informática.
+# Substitua example.com e o caminho de root antes de usar.
+#
+# A build é gerada com: npm run build
+# Publique o conteúdo da pasta dist/, não o código-fonte.
+
+server {
+    listen 80;
+    server_name example.com;
+
+    root /var/www/ftoinformatica/dist;
+    index index.html;
+
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
+
+    gzip on;
+    gzip_types text/plain text/css application/javascript application/json image/svg+xml;
+    gzip_min_length 256;
+
+    # Arquivos com hash gerados pelo Vite podem ficar em cache longo.
+    # expires não usa add_header, então os cabeçalhos do server continuam valendo.
+    location /assets/ {
+        expires 1y;
+        try_files $uri =404;
+    }
+
+    # Nginx não herda add_header quando o location define o seu próprio.
+    # Por isso os cabeçalhos de segurança se repetem aqui.
+    location = /index.html {
+        add_header Cache-Control "no-cache" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+        add_header X-Frame-Options "SAMEORIGIN" always;
+        add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+
+# TLS: depois do certificado, sirva o mesmo root na porta 443
+# e redirecione o server da porta 80 para https.
+# Ferramentas como certbot criam esse bloco com os caminhos reais do certificado.

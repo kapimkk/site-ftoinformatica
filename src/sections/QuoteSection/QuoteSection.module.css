@@ -1,0 +1,21 @@
+.panel {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+@media (min-width: 860px) {
+  .panel {
+    grid-template-columns: minmax(0, 1.4fr) auto;
+  }
+
+  .actions {
+    justify-content: flex-end;
+  }
+}

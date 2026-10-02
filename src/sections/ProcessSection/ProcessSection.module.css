@@ -1,0 +1,39 @@
+.steps {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2.25rem;
+  counter-reset: step;
+}
+
+.step {
+  display: grid;
+  gap: 0.55rem;
+  align-content: start;
+  min-height: 100%;
+  padding: 1.15rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.index {
+  color: var(--color-yellow-300);
+  font-family: var(--font-condensed);
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.step h3 {
+  font-size: 1.15rem;
+}
+
+.step p {
+  color: var(--color-inverse-muted);
+}
+
+@media (min-width: 900px) {
+  .steps {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
