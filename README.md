@@ -11,7 +11,7 @@ O site é uma aplicação React com TypeScript. O Node.js entra no desenvolvimen
 - **Configuração:** `src/config/env.ts` lê as variáveis `VITE_*`, valida o que dá para validar e entrega um objeto único para o restante da aplicação.
 - **Contato:** `src/services/contactLinks.ts` monta telefone, WhatsApp, e-mail e redes. Os componentes não carregam esses dados escritos no código.
 - **Conteúdo:** textos de serviço, diferenciais, etapas, dúvidas e depoimentos de demonstração ficam em `src/content`.
-- **Cena 3D:** a bancada do hero usa Three.js com notebook, celular e impressora genéricos, luz de estúdio e giro lento. O aparelho em destaque segue a aba escolhida.
+- **Cena 3D:** a bancada do hero usa Three.js, sem moldura. Notebook, celular e impressora genéricos ficam sobre a mesa, e placa, bateria, parafusos e ferramentas saem do aparelho em destaque.
 - **Publicação:** arquivos estáticos em `dist/`, com exemplo de servidor em `nginx/ftoinformatica.conf.example`.
 
 Variáveis `VITE_*` são públicas. Elas aparecem no JavaScript do navegador. Use apenas dados que podem estar no site. Não coloque senha, token ou chave de API.

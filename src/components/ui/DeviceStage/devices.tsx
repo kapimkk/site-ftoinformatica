@@ -28,6 +28,7 @@ export type Pose = {
 type DeviceProps = {
   pose: Pose;
   reducedMotion: boolean;
+  opened?: boolean;
 };
 
 const CHASSIS = '#a7adb6';
@@ -323,24 +324,50 @@ function PhoneBody(): ReactElement {
   );
 }
 
-export function Phone({ pose, reducedMotion }: DeviceProps): ReactElement {
+export function Phone({ pose, reducedMotion, opened = false }: DeviceProps): ReactElement {
   const group = useRef<Group>(null);
+  const display = useRef<Group>(null);
   const screen = useScreen(createPhoneScreen);
 
   useFrame((_, delta) => {
     if (group.current) {
       movePose(group.current, pose, reducedMotion, delta);
     }
+
+    const panel = display.current;
+    if (!panel) {
+      return;
+    }
+
+    const lift = opened ? 0.16 : 0;
+    const gap = opened ? 0.26 : 0;
+    if (reducedMotion) {
+      panel.position.set(0, lift, gap);
+      return;
+    }
+
+    panel.position.y = MathUtils.damp(panel.position.y, lift, 2.2, delta);
+    panel.position.z = MathUtils.damp(panel.position.z, gap, 2.2, delta);
   });
 
   return (
     <group ref={group} position={pose.position} rotation={pose.rotation} scale={pose.scale}>
       <PhoneBody />
-      <mesh position={[0, 0.4, 0.012]}>
-        <planeGeometry args={[0.3, 0.66]} />
-        <meshBasicMaterial map={screen} toneMapped={false} />
+      <mesh position={[0, 0.4, 0.006]}>
+        <planeGeometry args={[0.26, 0.58]} />
+        <meshStandardMaterial color="#0c6b45" roughness={0.5} metalness={0.2} />
       </mesh>
-      <ScreenGlint width={0.3} height={0.66} y={0.4} z={0.014} reducedMotion={reducedMotion} />
+      <mesh position={[-0.04, 0.48, 0.004]}>
+        <boxGeometry args={[0.1, 0.07, 0.004]} />
+        <meshStandardMaterial color="#14181c" roughness={0.4} metalness={0.3} />
+      </mesh>
+      <group ref={display}>
+        <mesh position={[0, 0.4, 0.012]}>
+          <planeGeometry args={[0.3, 0.66]} />
+          <meshBasicMaterial map={screen} toneMapped={false} />
+        </mesh>
+        <ScreenGlint width={0.3} height={0.66} y={0.4} z={0.014} reducedMotion={reducedMotion} />
+      </group>
       <mesh position={[0.184, 0.52, 0]}>
         <boxGeometry args={[0.008, 0.07, 0.012]} />
         <meshStandardMaterial color="#0c0e12" metalness={0.7} roughness={0.3} />
@@ -369,8 +396,9 @@ export function Phone({ pose, reducedMotion }: DeviceProps): ReactElement {
   );
 }
 
-export function Printer({ pose, reducedMotion }: DeviceProps): ReactElement {
+export function Printer({ pose, reducedMotion, opened = false }: DeviceProps): ReactElement {
   const group = useRef<Group>(null);
+  const lid = useRef<Group>(null);
   const paper = useRef<Mesh>(null);
   const led = useRef<Mesh>(null);
 
@@ -387,6 +415,14 @@ export function Printer({ pose, reducedMotion }: DeviceProps): ReactElement {
     const lamp = led.current?.material;
     if (lamp instanceof MeshStandardMaterial && !reducedMotion) {
       lamp.emissiveIntensity = 1.1 + Math.sin(state.clock.elapsedTime * 3) * 0.7;
+    }
+
+    const cover = lid.current;
+    if (cover) {
+      const angle = opened ? -0.75 : 0;
+      cover.rotation.x = reducedMotion
+        ? angle
+        : MathUtils.damp(cover.rotation.x, angle, 2.2, delta);
     }
   });
 
@@ -417,19 +453,21 @@ export function Printer({ pose, reducedMotion }: DeviceProps): ReactElement {
           clearcoatRoughness={0.3}
         />
       </RoundedBox>
-      <RoundedBox
-        args={[0.82, 0.04, 0.48]}
-        position={[0, 0.28, -0.04]}
-        radius={0.016}
-        smoothness={3}
-        castShadow
-      >
-        <meshStandardMaterial color="#d5dbe2" metalness={0.16} roughness={0.38} />
-      </RoundedBox>
-      <mesh position={[0, 0.302, -0.04]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[0.62, 0.3]} />
-        <meshStandardMaterial color="#243044" metalness={0.35} roughness={0.18} />
-      </mesh>
+      <group ref={lid} position={[0, 0.26, -0.28]}>
+        <RoundedBox
+          args={[0.82, 0.04, 0.48]}
+          position={[0, 0.02, 0.24]}
+          radius={0.016}
+          smoothness={3}
+          castShadow
+        >
+          <meshStandardMaterial color="#d5dbe2" metalness={0.16} roughness={0.38} />
+        </RoundedBox>
+        <mesh position={[0, 0.042, 0.24]} rotation={[-Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[0.62, 0.3]} />
+          <meshStandardMaterial color="#243044" metalness={0.35} roughness={0.18} />
+        </mesh>
+      </group>
       <mesh position={[0, 0.12, 0.265]}>
         <boxGeometry args={[0.66, 0.035, 0.012]} />
         <meshStandardMaterial color="#1b2128" />
@@ -453,8 +491,8 @@ export function Printer({ pose, reducedMotion }: DeviceProps): ReactElement {
 export function Desk(): ReactElement {
   return (
     <RoundedBox
-      args={[3.15, 0.08, 1.7]}
-      position={[0, -0.04, 0]}
+      args={[3.05, 0.07, 1.4]}
+      position={[0, -0.035, 0]}
       radius={0.04}
       smoothness={4}
       receiveShadow

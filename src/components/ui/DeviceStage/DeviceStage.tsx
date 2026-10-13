@@ -46,7 +46,6 @@ export function DeviceStage({ focus }: DeviceStageProps): ReactElement {
         reducedMotion={reducedMotion}
         pointer={pointer as RefObject<Pointer>}
       />
-      <p className={styles.caption}>Bancada ilustrativa</p>
     </div>
   );
 }
