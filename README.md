@@ -11,7 +11,7 @@ O site é uma aplicação React com TypeScript. O Node.js entra no desenvolvimen
 - **Configuração:** `src/config/env.ts` lê as variáveis `VITE_*`, valida o que dá para validar e entrega um objeto único para o restante da aplicação.
 - **Contato:** `src/services/contactLinks.ts` monta telefone, WhatsApp, e-mail e redes. Os componentes não carregam esses dados escritos no código.
 - **Conteúdo:** textos de serviço, diferenciais, etapas, dúvidas e depoimentos de demonstração ficam em `src/content`.
-- **Celular do hero:** `src/components/ui/PhoneShowcase` desenha um celular em CSS, sem biblioteca 3D. A tela tem fundo branco e passa dicas de informática e anúncios da empresa. Dá para trocar de tela pelas setas, pelos pontos, pelas setas do teclado ou deslizando o dedo. As telas passam sozinhas e param quando o mouse ou o foco está no celular. As abas do hero levam à tela do serviço escolhido.
+- **Notebook do hero:** `src/components/ui/LaptopShowcase` desenha um notebook em CSS, com teclado, trackpad e uma área de trabalho. A barra fica embaixo, com Iniciar, pesquisa, atalhos, relógio e ícones de sistema. As janelas passam dicas de informática e anúncios. Dá para trocar pelas setas, pelos ícones da barra, pelo menu Iniciar ou pelas setas do teclado. As janelas passam sozinhas e param quando o mouse ou o foco está no notebook. As abas do hero abrem a janela do serviço escolhido.
 - **Publicação:** arquivos estáticos em `dist/`, com exemplo de servidor em `nginx/ftoinformatica.conf.example`.
 
 Variáveis `VITE_*` são públicas. Elas aparecem no JavaScript do navegador. Use apenas dados que podem estar no site. Não coloque senha, token ou chave de API.
@@ -27,7 +27,7 @@ site-ftoinformatica/
 │   ├── components/
 │   │   ├── brand/                 marca
 │   │   ├── layout/                cabeçalho, rodapé, seção e metadados
-│   │   └── ui/                    botão, ícone, celular do hero, link e avisos
+│   │   └── ui/                    botão, ícone, notebook do hero, link e avisos
 │   ├── config/                    ambiente e navegação
 │   ├── content/                   textos da landing
 │   ├── hooks/                     rolagem, seção ativa e movimento reduzido
@@ -89,13 +89,12 @@ Canais vazios ou inválidos não são exibidos. Em desenvolvimento, o console av
 
 O Vite lê o ambiente **no momento da build**. Alterar o `.env` no servidor, depois que a pasta `dist/` já foi gerada, não muda o site. Rode `npm run build` de novo.
 
-## Telas do celular
+## Janelas do notebook
 
-As telas do celular do hero ficam em `src/content/phoneSlides.ts`. Cada item tem selo, título, texto e uma dica.
+As janelas do notebook do hero ficam em `src/content/phoneSlides.ts`. Cada item tem selo, título, texto e uma dica.
 
 - **Texto:** edite os campos do item. Itens com `kind: 'ad'` aparecem como anúncio.
-- **Imagem:** coloque o arquivo em `public/` e informe o caminho em `image` (por exemplo, `/anuncios/promocao.jpg`). A imagem cobre o fundo branco daquela tela.
-- **Cores da tela:** mude `--screen-bg`, `--screen-ink`, `--screen-muted` e `--screen-accent` em `src/components/ui/PhoneShowcase/PhoneShowcase.module.css`.
+- **Imagem:** coloque o arquivo em `public/` e informe o caminho em `image` (por exemplo, `/anuncios/promocao.jpg`). A imagem entra no topo da janela.
 
 Publique só ofertas que a empresa realmente pratica, com preço e validade conferidos.
 

@@ -2,9 +2,9 @@ import type { PhoneSlide } from '../types/content';
 import { serviceCatalog } from './services';
 
 /**
- * Telas exibidas no celular do hero.
+ * Janelas exibidas na área de trabalho do notebook do hero.
  * Para personalizar, edite os textos ou informe `image` com um arquivo de `public/`
- * (ex.: `/anuncios/promocao.jpg`). Sem imagem, a tela usa o fundo branco.
+ * (ex.: `/anuncios/promocao.jpg`). Sem imagem, a janela usa o fundo claro.
  */
 export const phoneSlides: readonly PhoneSlide[] = [
   {
