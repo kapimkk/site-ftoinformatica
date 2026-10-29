@@ -27,8 +27,6 @@ type Direction = 1 | -1;
 
 const AUTOPLAY_MS = 5500;
 const MAX_TILT_DEG = 6;
-const KEY_ROWS = [13, 13, 12, 11] as const;
-
 function wrapIndex(index: number): number {
   return (index + phoneSlides.length) % phoneSlides.length;
 }
@@ -106,25 +104,6 @@ function SystemTray(): ReactElement {
         </svg>
       </TrayIcon>
     </>
-  );
-}
-
-function KeyDeck(): ReactElement {
-  return (
-    <div className={styles.keys} aria-hidden="true">
-      {KEY_ROWS.map((count, row) => (
-        <div key={row} className={styles.keyRow}>
-          {Array.from({ length: count }, (_, column) => (
-            <span key={column} className={styles.key} />
-          ))}
-        </div>
-      ))}
-      <div className={styles.keyRow}>
-        <span className={styles.key} />
-        <span className={cn(styles.key, styles.spacebar)} />
-        <span className={styles.key} />
-      </div>
-    </div>
   );
 }
 
@@ -282,9 +261,14 @@ export function LaptopShowcase({ focus }: LaptopShowcaseProps): ReactElement {
       </button>
 
       <div ref={laptopRef} className={styles.laptop}>
-        <div className={styles.lid}>
-          <span className={styles.camera} aria-hidden="true" />
-          <div className={styles.display}>
+        <img
+          className={styles.photo}
+          src="/laptop-chassis.png"
+          alt=""
+          width={950}
+          height={655}
+        />
+        <div className={styles.display}>
             <div className={styles.desktop}>
               {minimized ? null : (
                 <article className={cn(styles.window, maximized && styles.windowMax)}>
@@ -420,13 +404,6 @@ export function LaptopShowcase({ focus }: LaptopShowcaseProps): ReactElement {
               </div>
             </div>
           </div>
-        </div>
-        <div className={styles.hinge} aria-hidden="true" />
-        <div className={styles.deck}>
-          <KeyDeck />
-          <div className={styles.trackpad} aria-hidden="true" />
-          <span className={styles.led} aria-hidden="true" />
-        </div>
       </div>
 
       <button

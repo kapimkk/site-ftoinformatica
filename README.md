@@ -11,7 +11,7 @@ O site é uma aplicação React com TypeScript. O Node.js entra no desenvolvimen
 - **Configuração:** `src/config/env.ts` lê as variáveis `VITE_*`, valida o que dá para validar e entrega um objeto único para o restante da aplicação.
 - **Contato:** `src/services/contactLinks.ts` monta telefone, WhatsApp, e-mail e redes. Os componentes não carregam esses dados escritos no código.
 - **Conteúdo:** textos de serviço, diferenciais, etapas, dúvidas e depoimentos de demonstração ficam em `src/content`.
-- **Notebook do hero:** `src/components/ui/LaptopShowcase` desenha um notebook em CSS, com teclado, trackpad e uma área de trabalho. A barra fica embaixo, com Iniciar, pesquisa, atalhos, relógio e ícones de sistema. As janelas passam dicas de informática e anúncios. Dá para trocar pelas setas, pelos ícones da barra, pelo menu Iniciar ou pelas setas do teclado. As janelas passam sozinhas e param quando o mouse ou o foco está no notebook. As abas do hero abrem a janela do serviço escolhido.
+- **Notebook do hero:** `src/components/ui/LaptopShowcase` usa a foto `public/laptop-chassis.png` e desenha a área de trabalho por cima da tela. A barra fica embaixo, com Iniciar, pesquisa, atalhos, relógio e ícones de sistema. As janelas passam dicas de informática e anúncios. Dá para trocar pelas setas, pelos ícones da barra, pelo menu Iniciar ou pelas setas do teclado. As janelas passam sozinhas e param quando o mouse ou o foco está no notebook. As abas do hero abrem a janela do serviço escolhido.
 - **Publicação:** arquivos estáticos em `dist/`, com exemplo de servidor em `nginx/ftoinformatica.conf.example`.
 
 Variáveis `VITE_*` são públicas. Elas aparecem no JavaScript do navegador. Use apenas dados que podem estar no site. Não coloque senha, token ou chave de API.
