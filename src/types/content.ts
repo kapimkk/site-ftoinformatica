@@ -1,3 +1,5 @@
+import type { IconName } from './icon';
+
 export type ServiceId = 'notebooks' | 'celulares' | 'impressoras' | 'suporte';
 
 export interface ServiceDefinition {
@@ -12,6 +14,18 @@ export interface ServiceDefinition {
   workTitle: string;
   work: readonly string[];
   note: string;
+}
+
+export interface PhoneSlide {
+  id: string;
+  kind: 'service' | 'ad';
+  serviceId?: ServiceId;
+  icon: IconName;
+  tag: string;
+  title: string;
+  text: string;
+  detail: string;
+  image?: string;
 }
 
 export type DifferentialId =

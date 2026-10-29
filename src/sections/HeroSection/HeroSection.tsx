@@ -3,7 +3,7 @@ import { getHeroLead } from '../../content/companyCopy';
 import { serviceList } from '../../content/services';
 import { ButtonLink } from '../../components/ui/Button/Button';
 import { Container } from '../../components/ui/Container/Container';
-import { DeviceStage } from '../../components/ui/DeviceStage/DeviceStage';
+import { PhoneShowcase } from '../../components/ui/PhoneShowcase/PhoneShowcase';
 import { getServiceIcon } from '../../components/ui/Icon/serviceIcon';
 import { Icon } from '../../components/ui/Icon/Icon';
 import { selectServiceHash, useServiceHash } from '../../hooks/useServiceHash';
@@ -46,7 +46,7 @@ export function HeroSection(): ReactElement {
             </ButtonLink>
           </div>
         </div>
-        <DeviceStage focus={activeId} />
+        <PhoneShowcase focus={activeId} />
       </Container>
     </section>
   );
