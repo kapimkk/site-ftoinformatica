@@ -4,7 +4,7 @@ import { serviceCatalog } from './services';
 /**
  * Telas exibidas no celular do hero.
  * Para personalizar, edite os textos ou informe `image` com um arquivo de `public/`
- * (ex.: `/anuncios/promocao.jpg`). Sem imagem, a tela usa o fundo verde.
+ * (ex.: `/anuncios/promocao.jpg`). Sem imagem, a tela usa o fundo branco.
  */
 export const phoneSlides: readonly PhoneSlide[] = [
   {
